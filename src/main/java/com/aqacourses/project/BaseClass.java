@@ -16,7 +16,7 @@ public abstract class BaseClass {
     @FindBy(xpath = "//div[@id='block_top_menu']/ul/li/a[@title='Dresses']")
     private WebElement dressesTab;
 
-    @FindBy(xpath = "//li[@class='sfHover']/ul/li[3]/a")
+    @FindBy(xpath = "//li[@class='sfHover']//a[@title='Summer Dresses'][contains(text(),'Summer Dresses')]")
     private WebElement summerDressesSubTab;
 
     //Instance of BaseTest
@@ -45,7 +45,7 @@ public abstract class BaseClass {
     /**
      * Hover over "Dresses" tab in main top menu
      */
-    public void HoverOverDressesItem() {
+    public void hoverOverDressesItem() {
         Actions builder = new Actions(testClass.getDriver());
         builder.moveToElement(dressesTab).build().perform();
     }

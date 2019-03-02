@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import util.ColorsEnum;
 
 import java.util.List;
 
@@ -13,8 +14,18 @@ public class SummerDresses extends BaseClass {
     @FindBy(xpath = "//span[@class='heading-counter']")
     private WebElement headingCounter;
 
-    @FindBy(xpath = "//*[@id=\"layered_id_attribute_group_8\"]")
+    @FindBy(xpath = "//*[@id='layered_id_attribute_group_8']")
     private WebElement whiteColorIcon;
+    @FindBy(xpath = "//a[contains(text(),'Blue')]")
+    private WebElement blueColorIcon;
+    @FindBy(xpath = "//a[contains(text(),'Black')]")
+    private WebElement blackColorIcon;
+    @FindBy(xpath = "//a[contains(text(),'Orange')]")
+    private WebElement orangeColorIcon;
+    @FindBy(xpath = "//a[contains(text(),'Green')]")
+    private WebElement greenColorIcon;
+    @FindBy(xpath = "//a[contains(text(),'Yellow')]")
+    private WebElement yellowColorIcon;
 
     @FindBy(xpath = "//div[@id='enabled_filters']")
     private WebElement enabledFilters;
@@ -38,21 +49,46 @@ public class SummerDresses extends BaseClass {
         //Get list of the available products on the page
         List<WebElement> list =
                 headingCounter.findElements(By.xpath("//span[@class='available-now']"));
-        //Counter
-        int displayedProductsOnPage = 0;
-
-        for (WebElement webElement : list) {
-            displayedProductsOnPage++;
-        }
-        System.out.println("amountShownByCounter=" + amountShownByCounter + " displayedProductsOnPage=" + displayedProductsOnPage);
-        Assert.assertEquals(amountShownByCounter, displayedProductsOnPage);
+        System.out.println("amountShownByCounter=" + amountShownByCounter + " displayedProductsOnPage=" + list.size());
+        //Compare counter value with amount of the displayed products
+        Assert.assertEquals(amountShownByCounter, list.size());
     }
 
     /**
      * Click on the filter by color
      */
-    public void clickOnTheColorFilter() {
-        whiteColorIcon.click();
-        testClass.waitElementToBeClickable(enabledFilters);
+
+    public void clickOnTheColorFilter(ColorsEnum colors) {
+        switch (colors) {
+            case WHITE:
+                whiteColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            case BLUE:
+                blueColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            case YELLOW:
+                yellowColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            case BLACK:
+                blackColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            case GREEN:
+                greenColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            case ORANGE:
+                orangeColorIcon.click();
+                testClass.waitElementToBeClickable(enabledFilters);
+                break;
+            default:
+                System.out.println("Such color doesn`t exist");
+                break;
+        }
+
+        //
     }
 }

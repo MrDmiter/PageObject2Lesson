@@ -2,6 +2,7 @@ package tests;
 
 import com.aqacourses.project.*;
 import org.junit.Test;
+import util.ColorsEnum;
 
 public class PageObject2Test extends BaseTest {
 
@@ -20,7 +21,7 @@ public class PageObject2Test extends BaseTest {
         MyAccountPage myAccountPage = signInPage.signIn();
 
         //Hover over Dresses category
-        myAccountPage.HoverOverDressesItem();
+        myAccountPage.hoverOverDressesItem();
 
         //Click on the Summer Dresses product type
         SummerDresses summerDresses = myAccountPage.clickOnSummerDressesItem();
@@ -29,7 +30,7 @@ public class PageObject2Test extends BaseTest {
         summerDresses.verifyAmountOfProductsOnPage();
 
         //Choose white in the filter
-        summerDresses.clickOnTheColorFilter();
+        summerDresses.clickOnTheColorFilter(ColorsEnum.WHITE);
 
         //Verify amount of the products on the page after clicking on the filter
         summerDresses.verifyAmountOfProductsOnPage();

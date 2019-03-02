@@ -2,6 +2,7 @@ package com.aqacourses.project;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import util.YamlParser;
 
 public class SignInPage extends BaseClass {
 
@@ -17,6 +18,7 @@ public class SignInPage extends BaseClass {
 
     /**
      * Constructor
+     *
      * @param testClass
      */
     public SignInPage(BaseTest testClass) {
@@ -25,13 +27,14 @@ public class SignInPage extends BaseClass {
 
     /**
      * Sign in to the account
+     *
      * @return
      */
     public MyAccountPage signIn() {
         //Enter email
-        emailTextField.sendKeys("gavuyabavu@digitalmail.info");
+        emailTextField.sendKeys(YamlParser.getYamlFile().getEmail());
         //Enter password
-        passTextField.sendKeys("12345");
+        passTextField.sendKeys(YamlParser.getYamlFile().getPassword());
         //Click on the sign in button
         signInBtn.click();
         return new MyAccountPage(testClass);

@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.YamlParser;
 
 public class BaseTest {
 
@@ -49,7 +50,7 @@ public class BaseTest {
      * @return
      */
     public HomePage openSite() {
-        driver.get("http://automationpractice.com/");
+        driver.get(YamlParser.getYamlFile().getSite());
         return new HomePage(this);
     }
 
